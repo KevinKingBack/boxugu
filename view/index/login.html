@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>学IT - 后台管理系统</title>
-    <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/assets/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="/public/assets/nprogress/nprogress.css">
-    <link rel="stylesheet" href="/public/less/index.css">
+    <?php include('/view/common/style.html') ?>
 </head>
 <body>
     <!-- 登录 -->
@@ -33,37 +30,7 @@
         </div>
     </div>
     
-    <script src="/public/assets/jquery/jquery.min.js"></script>
-    <script src="/public/assets/jquery-cookie/jquery.cookie.js"></script>
-    <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-    $('#loginForm').submit(function(){
-        var formData=$(this).serialize();
-        $.ajax({
-            type:'post',
-            // url:'http://api.studyit.com/login',
-            url:'/api/login',
-            data: formData,
-            dataType:'json',
-            success:function(data){
-                if(data.code==200){
-                    // console.log(data.result);
-                    var logInfo=JSON.stringify(data.result);
-                    // console.log(logInfo);
-                    //实现cookie数据的跨页面共享
-                    $.cookie('logInfo',logInfo,{path:'/'});
-                    location.href='/index/index';
-                }
-            },
-            error:function(){
-                alert("请与管理员联系");
-            }
-        });
-
-        return false;//阻止默认行为,只是在jQuery里面可以这样写
-
-    });
-                  
-    </script>
+    <?php include("/view/common/script.html") ?>
+  
 </body>
 </html>
