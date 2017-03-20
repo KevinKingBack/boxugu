@@ -7,6 +7,7 @@ require.config({
         echarts: 'echarts/echarts.min',
         template: 'artTemplate/template',
         bootstrap: 'bootstrap/js/bootstrap',
+        nprogress : 'nprogress/nprogress',
         util: '../js/util',
         overlayer : '../js/overlayer'
     },
