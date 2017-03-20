@@ -1,7 +1,9 @@
 /**
  * 教师列表功能 
  */
-define(["jquery", "template", "bootstrap"], function ($, template) {
+define(["jquery", "template","util","overlayer", "bootstrap"], function ($, template,util) {
+    //处理点击左侧按钮的显示
+    util.setMenu(location.pathname);
     $.ajax({
         type: 'get',
         url: '/api/teacher',
@@ -19,8 +21,8 @@ define(["jquery", "template", "bootstrap"], function ($, template) {
                     data: { tc_id: tc_id },
                     dataType: 'json',
                     success: function (data) {
-                        if(data.code == 200){
-                            data.result.tc_hometown=data.result.tc_hometown.replace(/\|/g,' ');
+                        if (data.code == 200) {
+                            data.result.tc_hometown = data.result.tc_hometown.replace(/\|/g, ' ');
                             // data.result.tc_hometown=data.result.tc_hometown.split('|').join(' ');
                             var html = template("teacherInfoModal", data.result);
                             $("#teacher_Info").html(html);
@@ -31,26 +33,26 @@ define(["jquery", "template", "bootstrap"], function ($, template) {
                 });
                 return false;
             });
-             //启用和注销功能
+            //启用和注销功能
             $('.teacherBtns').find('a:eq(2)').click(function () {
-                var that=this;
-                var td=$(this).closest('td');
+                var that = this;
+                var td = $(this).closest('td');
                 var tc_id = td.attr('data-tcid');
-                var tc_status=td.attr('data-status');
+                var tc_status = td.attr('data-status');
                 $.ajax({
                     type: 'post',
                     url: '/api/teacher/handle',
-                    data: { tc_id: tc_id,tc_status:tc_status},
+                    data: { tc_id: tc_id, tc_status: tc_status },
                     dataType: 'json',
                     success: function (data) {
-                        if(data.code == 200){
-                           if(data.result.tc_status ==0){
+                        if (data.code == 200) {
+                            if (data.result.tc_status == 0) {
                                 $(that).text('注销');
-                           }else{
+                            } else {
                                 $(that).text('启用');
-                           }
-                           //修改浏览器端的状态
-                           td.attr('data-status',data.result.tc_status);
+                            }
+                            //修改浏览器端的状态
+                            td.attr('data-status', data.result.tc_status);
                         }
                     }
                 });

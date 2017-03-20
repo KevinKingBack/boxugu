@@ -1,5 +1,5 @@
 
-define(['jquery', 'echarts', 'template', 'cookic'], function ($, echarts, template) {
+define(['jquery', 'echarts', 'template','overlayer', 'cookic'], function ($, echarts, template) {
 
     // 控制左侧导航菜单的显示和隐藏
     $('.navs ul').prev('a').on('click', function () {

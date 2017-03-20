@@ -4,14 +4,16 @@ require.config({
     paths: {
         jquery: 'jquery/jquery.min',
         cookic: 'jquery-cookie/jquery.cookie',
-        echarts:'echarts/echarts.min',
-        template:'artTemplate/template',
-        bootstrap:'bootstrap/js/bootstrap'
+        echarts: 'echarts/echarts.min',
+        template: 'artTemplate/template',
+        bootstrap: 'bootstrap/js/bootstrap',
+        util: '../js/util',
+        overlayer : '../js/overlayer'
     },
-    shim:{
-        //暂时先不加
-        bootstrap:{
-            deps:["jquery"]
+    shim: {
+        //把bootstrap转换为标准模块,(依赖于标准的jQuery模块)
+        bootstrap: {
+            deps: ["jquery"]
         }
     }
 });
