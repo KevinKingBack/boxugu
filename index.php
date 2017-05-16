@@ -24,5 +24,4 @@ if(array_key_exists('PATH_INFO',$_SERVER)){
 }
 //作用就是载入一个页面
 include('./view/'.$path.'/'.$filename.'.html');
-
 ?>
